@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import moduleName from '../public/'
 class App extends Component {
   render() {
     return (
