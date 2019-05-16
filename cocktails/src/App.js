@@ -12,12 +12,7 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <Layout />
-          <Consumer>
-            {value => {
-              <p>{value.state}</p>
-            }}
-            
-          </Consumer>
+
         </div>
       </Provider>
     );

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { InputGroup, Dropdown, DropdownButton, FormControl } from 'react-bootstrap';
-
+import { InputGroup, Dropdown, DropdownButton, FormControl, Col, Form } from 'react-bootstrap';
+import './SideBar.css'
 
 class SideBar extends Component {
   render() {
     return (
       <div>
+
+    <Form.Group className="side-bar" controlId="validationFormik05" float="left">
+              <br />
+
     <DropdownButton
       as={InputGroup.Prepend}
       variant="outline-secondary"
@@ -21,6 +25,21 @@ class SideBar extends Component {
       <Dropdown.Item href="#">Suaves</Dropdown.Item>
 
     </DropdownButton>
+      <br />
+    <FormControl
+      placeholder="Buscar por nombre"
+      aria-label="name"
+      aria-describedby="basic-addon1"
+    />
+            <br />
+
+      <FormControl
+      placeholder="Buscar por ingrediente"
+      aria-label="ingrediente"
+      aria-describedby="basic-addon1"
+    />
+
+    </Form.Group>
       </div>
 
     )
