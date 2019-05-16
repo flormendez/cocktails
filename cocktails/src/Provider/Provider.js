@@ -31,25 +31,6 @@ class Provider extends Component {
         });
       });
   };
-
-  getCategories = PATH => {
-    fetch(URL + PATH, {
-      method: "GET",
-      headers: new Headers({})
-    })
-      .then(res => res.json())
-      .then(result => {
-        this.setState({
-          categoriesLoaded: true,
-          categories: result.drinks.map(e => e.strCategory)
-        });
-      })
-      .catch(error => {
-        this.setState({
-          error
-        });
-      });
-  };
   getIngredients = PATH => {
     fetch(URL + PATH, {
       method: "GET",
@@ -75,11 +56,11 @@ class Provider extends Component {
     this.getIngredients("list.php?i=list");
   }
   render() {
+
     return (
       <Context.Provider
         value={{
-          state: this.state,
-          getCategories: this.getCategories
+          state: this.state
         }}
       >
         {this.props.children}
