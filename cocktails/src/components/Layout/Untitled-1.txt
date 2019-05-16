@@ -1,0 +1,73 @@
+// create new context
+const MyContext = React.createContext()
+
+//Then create a provider component 
+class myProvider extends Component {
+    state= {
+        name: 'wes',
+        age: 100,
+        cool:true
+    }
+    render(){
+        return(
+            <MyContext.Provider value="Im the value">
+            {this.props.children}
+            </MyContext.Provider>
+
+        )
+
+    }
+}
+
+
+// Wrap our app in <MyProvider>
+// Wrap the Consumer
+<MyContext.Consumer> => el child de un consumer va a ser siempre siempre una función 
+
+
+
+
+
+state {
+    random:{}
+    listaCocktails:[{}{}{}]
+
+}
+
+getRandom()
+getCocktails()
+getCoctail(id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
