@@ -63,13 +63,15 @@ class Provider extends Component {
       .then(result => {
         this.setState({
           cocktailsLoaded: true,
-          cocktails: result.drinks.map(el=>{ return {
-            id: el.idDrink,
-            name: el.strDrink,
-            category: el.strCategory,
-            thumb: el.strDrinkThumb,
-            ingredient: el.strIngredient1
-          }})
+          cocktails: result.drinks.map(el => {
+            return {
+              id: el.idDrink,
+              name: el.strDrink,
+              category: el.strCategory,
+              thumb: el.strDrinkThumb,
+              ingredient: el.strIngredient1
+            };
+          })
         });
       })
       .catch(error => {
@@ -82,7 +84,7 @@ class Provider extends Component {
   getCocktail = id => {
     this.setState({
       cocktailLoaded: false
-    })
+    });
     fetch(URL + "lookup.php?i=" + id, {
       method: "GET",
       headers: new Headers({})
@@ -117,7 +119,6 @@ class Provider extends Component {
   }
 
   render() {
-
     return (
       <Context.Provider
         value={{
