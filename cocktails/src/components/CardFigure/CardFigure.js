@@ -19,8 +19,11 @@ class CardFigure extends Component {
                   />
                   {console.log(value.state.cocktail.thumb)}
                   <Card.Body>
-                    <Card.Title>{value.state.cocktail.name}</Card.Title>
-                    <Card.Text>{value.state.cocktail.category}</Card.Text>
+                    <Card.Title><h2>{value.state.cocktail.name}</h2></Card.Title>
+                    <Card.Text>{<h5>Categoría: {value.state.cocktail.category}</h5>}</Card.Text>
+                    <Card.Text>{<h5>Tipo de vaso: {value.state.cocktail.glass}</h5>}</Card.Text>
+                    <Card.Text>{<h5>Receta</h5>}</Card.Text>
+                    <Card.Text>{value.state.cocktail.recipe}</Card.Text>
                   </Card.Body>
                 </Card>
               ) : (
