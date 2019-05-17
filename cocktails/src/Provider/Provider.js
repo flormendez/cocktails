@@ -8,13 +8,14 @@ class Provider extends Component {
     categoriesLoaded: false,
     ingredients: [],
     ingredientsLoaded: false,
-    drinks: [],
-    drinksLoaded: false,
-    selectedDrink: {}
+    cocktails: [],
+    cocktailsLoaded: false,
+    cocktail: null,
+    cocktailLoaded: false
   };
 
-  getCategories = PATH => {
-    fetch(URL + PATH, {
+  getCategories = () => {
+    fetch(URL + "list.php?c=list", {
       method: "GET",
       headers: new Headers({})
     })
@@ -31,8 +32,8 @@ class Provider extends Component {
         });
       });
   };
-  getIngredients = PATH => {
-    fetch(URL + PATH, {
+  getIngredients = () => {
+    fetch(URL + "list.php?i=list", {
       method: "GET",
       headers: new Headers({})
     })
@@ -42,26 +43,89 @@ class Provider extends Component {
           categoriesIngredients: true,
           ingredients: result.drinks.map(e => e.strIngredient1)
         });
-        console.log("antes")
       })
-      .then(console.log("despues"))
       .catch(error => {
         this.setState({
           error
         });
       });
   };
+<<<<<<< HEAD
  
+=======
+  getCocktails = (field, name) => {
+    this.setState({
+      cocktailsLoaded: false
+    })
+    fetch(URL + "search.php?"+field+"=" + name, {
+      method: "GET",
+      headers: new Headers({})
+    })
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          cocktailsLoaded: true,
+          cocktails: result.drinks.map(el=>{ return {
+            id: el.idDrink,
+            name: el.strDrink,
+            category: el.strCategory,
+            thumb: el.strDrinkThumb,
+            ingredient: el.strIngredient1
+          }})
+        });
+      })
+      .catch(error => {
+        this.setState({
+          error
+        });
+      });
+  };
+  getCocktail = id => {
+    this.setState({
+      cocktailLoaded: false
+    })
+    fetch(URL + "lookup.php?i=" + id, {
+      method: "GET",
+      headers: new Headers({})
+    })
+      .then(res => res.json())
+      .then(result => {
+        let drink = result.drinks[0];
+        this.setState({
+          cocktailLoaded: true,
+          cocktail: {
+            id: drink.idDrink,
+            name: drink.strDrink,
+            category: drink.strCategory,
+            thumb: drink.strDrinkThumb,
+            glass: drink.strGlass,
+            recipe: drink.strInstructions
+          }
+        });
+      })
+      .catch(error => {
+        this.setState({
+          error
+        });
+      });
+  };
+
+>>>>>>> c3e7cc73a4395d56349f2fe454b17a3da8b47b0c
   componentDidMount() {
-    this.getCategories("list.php?c=list");
-    this.getIngredients("list.php?i=list");
+    this.getCategories();
+    this.getIngredients();
+    this.getCocktails ("s","margarita");
+    this.getCocktail("17216");
   }
+
   render() {
 
     return (
       <Context.Provider
         value={{
-          state: this.state
+          state: this.state,
+          getCocktail: this.getCocktail,
+          getCocktails: this.getCocktails
         }}
       >
         {this.props.children}
@@ -69,5 +133,6 @@ class Provider extends Component {
     );
   }
 }
+
 const Consumer = Context.Consumer;
 export { Consumer, Provider };
