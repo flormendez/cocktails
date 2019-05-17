@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Card, CardColumns} from 'react-bootstrap';
+import {Card, CardColumns, CardDeck, CardGroup} from 'react-bootstrap';
 import { Consumer } from "../../Provider/Provider";
+
 
 export class Cocktails extends Component {
   render() {
@@ -9,12 +10,30 @@ export class Cocktails extends Component {
         {value => {
           return (
             <div>
+    <CardGroup> 
+    <CardColumns>
+        {value.state.cocktails.map(el => (
     
-    {value.state.categories.map(el => (
-                <Card.Body key={el.index} href="#">
-                      {el}
-                    </Card.Body>
-                  ))}
+    
+    <Card key={el.id} onClick={()=>{
+      this.props.toggleList();
+      value.getCocktail(el.id); 
+    }}>
+      <Card.Img variant="top" className="img" src={el.thumb}/>
+      {console.log(el.thumb)}
+      <Card.Body>
+        <Card.Title>{el.name}</Card.Title>
+        <Card.Text>
+          {el.category}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+
+
+    ))}    
+    </CardColumns>
+    </CardGroup>
+
       </div>
           );
         }}

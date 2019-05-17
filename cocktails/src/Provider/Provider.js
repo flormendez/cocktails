@@ -11,7 +11,7 @@ class Provider extends Component {
     cocktails: [],
     cocktailsLoaded: false,
     cocktail: null,
-    cocktailLoaded: false
+    cocktailLoaded: false,
   };
 
   getCategories = () => {
@@ -50,9 +50,6 @@ class Provider extends Component {
         });
       });
   };
-<<<<<<< HEAD
- 
-=======
   getCocktails = (field, name) => {
     this.setState({
       cocktailsLoaded: false
@@ -110,7 +107,6 @@ class Provider extends Component {
       });
   };
 
->>>>>>> c3e7cc73a4395d56349f2fe454b17a3da8b47b0c
   componentDidMount() {
     this.getCategories();
     this.getIngredients();

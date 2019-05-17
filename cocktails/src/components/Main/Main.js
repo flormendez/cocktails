@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import Figure from "../CardFigure/CardFigure";
 import Cocktails from "../Cocktails/Cocktails"
+import CardFigure from "../CardFigure/CardFigure"
+
+
 import "./Main.css"
 
 export class Main extends Component {
+  state = {
+    showList: true
+  }
+
+  toggleList = () => {
+    this.setState({showList : !this.state.showList})
+  }
+
   render() {
     return (
       <div className="mainContainer">
-        <Figure />
-        <Cocktails />
+      {this.state.showList ? <Cocktails toggleList={this.toggleList} /> : <CardFigure />}
       </div>
     )
   }
