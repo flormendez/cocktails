@@ -51,6 +51,7 @@ class Provider extends Component {
         });
       });
   };
+ 
   componentDidMount() {
     this.getCategories("list.php?c=list");
     this.getIngredients("list.php?i=list");
