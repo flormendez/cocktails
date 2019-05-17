@@ -23,9 +23,9 @@ class CardFigure extends Component {
                   />
                   <Card.Body>
                     <Card.Title><h2>{value.state.cocktail.name}</h2></Card.Title>
-                    <Card.Text>{<h5>Categoría: {value.state.cocktail.category}</h5>}</Card.Text>
-                    <Card.Text>{<h5>Tipo de vaso: {value.state.cocktail.glass}</h5>}</Card.Text>
-                    <Card.Text>{<h5>Receta</h5>}</Card.Text>
+                    <Card.Text>{<h5>Category: {value.state.cocktail.category}</h5>}</Card.Text>
+                    <Card.Text>{<h5>Glass type: {value.state.cocktail.glass}</h5>}</Card.Text>
+                    <Card.Text>{<h5>Recipe</h5>}</Card.Text>
                     <Card.Text>{value.state.cocktail.recipe}</Card.Text>
                     <Button variant="primary" onClick={() => {
                         this.props.backToList()
