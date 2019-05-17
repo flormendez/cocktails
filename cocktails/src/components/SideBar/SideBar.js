@@ -29,7 +29,7 @@ class SideBar extends Component {
             <div>
               <Form
                 className="side-bar"
-                controlId="validationFormik05"
+                controlid="validationFormik05"
                 float="left"
               >
                 <br />
@@ -58,22 +58,28 @@ class SideBar extends Component {
               <br />
               <Form
                 className="side-bar"
-                controlId="validationFormik05"
+                controlid="validationFormik05"
                 float="left"
               >
                 <FormControl
+                  list="nombres"
                   placeholder="Buscar por nombre"
                   aria-label="name"
                   aria-describedby="basic-addon1"
                   value={this.state.value}
                   onChange={event => this.handleValueChange("nameValue", event)}
                 />
+                  <datalist id="nombres">
+                    {value.state.cocktails.map(el => (
+                      <option value={el.name} />
+                    ))}
+                  </datalist>
+           
                 <Button
                   variant="primary"
                   type="submit"
                   onClick={event => {
                     event.preventDefault();
-                    console.log(this.state.nameValue);
                     value.getCocktails("search", "s", this.state.nameValue);
                   }}
                 >
@@ -84,7 +90,7 @@ class SideBar extends Component {
 
               <Form
                 className="side-bar"
-                controlId="validationFormik05"
+                controlid="validationFormik05"
                 float="left"
               >
                 <FormControl
@@ -101,8 +107,11 @@ class SideBar extends Component {
                   type="submit"
                   onClick={event => {
                     event.preventDefault();
-                    console.log(this.state.ingredientValue);
-                    value.getCocktails("search", "i", this.state.ingredientValue);
+                    value.getCocktails(
+                      "filter",
+                      "i",
+                      this.state.ingredientValue
+                    );
                   }}
                 >
                   Buscar por ingrediente
