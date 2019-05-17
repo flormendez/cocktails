@@ -17,7 +17,6 @@ class NavBar extends Component {
     return (
         <Navbar bg="light" expand="lg">
         <Navbar.Brand href="#home">
-        {/* <h1><FontAwesomeIcon icon={faCoffee}/></h1> */}
         <Row className="logo">
         <FontAwesomeIcon icon={faCocktail} />
         &nbsp;
@@ -30,8 +29,10 @@ class NavBar extends Component {
         </Navbar.Collapse>        
 
         <Form inline className="formButtons">
+        <Row>
         <Button variant="outline-info" className="logIn">Log In </Button>&nbsp;
         <Button variant="outline-info" className="signUp"> Sign Up </Button>
+        </Row>
         </Form>
 
       </Navbar>

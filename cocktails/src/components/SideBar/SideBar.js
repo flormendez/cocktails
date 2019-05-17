@@ -92,6 +92,7 @@ class SideBar extends Component {
            
                 {this.state.nameButton ? 
                 <Button
+                 className="inputButton"
                   variant="primary"
                   type="submit"
                   onClick={event => {
@@ -127,6 +128,7 @@ class SideBar extends Component {
               </datalist>
                  {this.state.ingredientButton ? 
                 <Button
+                  className="inputButton"
                   variant="primary"
                   type="submit"
                   onClick={event => {
