@@ -42,7 +42,7 @@ class SideBar extends Component {
             <div>
               <Form
                 className="side-bar"
-                controlId="validationFormik05"
+                controlid="validationFormik05"
                 float="left"
               >
                 <br />
@@ -54,9 +54,9 @@ class SideBar extends Component {
                   title="Categorías"
                   id="input-group-dropdown-1"
                 >
-                  {value.state.categories.map(el => (
+                  {value.state.categories.map((el) => (
                     <Dropdown.Item
-                      key={el.index}
+                      key={Math.random()}
                       eventKey={el
                         .replace(/\s/g, "_")
                         .replace(/\//g, "")
@@ -71,10 +71,11 @@ class SideBar extends Component {
               <br />
               <Form
                 className="side-bar"
-                controlId="validationFormik05"
+                controlid="validationFormik05"
                 float="left"
               >
                 <FormControl
+                  list="nombres"
                   placeholder="Buscar por nombre"
                   aria-label="name"
                   aria-describedby="basic-addon1"
@@ -83,6 +84,12 @@ class SideBar extends Component {
                   onFocus={()=>this.showButton("nameButton")}
                   onBlur={()=>this.hideButton("nameButton")}
                 />
+                  <datalist id="nombres">
+                    {value.state.namesList.map(el => (
+                      <option value={el} />
+                    ))}
+                  </datalist>
+           
                 {this.state.nameButton ? 
                 <Button
                  className="inputButton"
@@ -100,10 +107,11 @@ class SideBar extends Component {
 
               <Form
                 className="side-bar"
-                controlId="validationFormik05"
+                controlid="validationFormik05"
                 float="left"
               >
                 <FormControl
+                 list="ingredients"
                   placeholder="Buscar por ingrediente"
                   aria-label="ingrediente"
                   aria-describedby="basic-addon1"
@@ -113,7 +121,11 @@ class SideBar extends Component {
                   }
                   onFocus={()=>this.showButton("ingredientButton")}
                   onBlur={()=>this.hideButton("ingredientButton")}
-                />
+                />   <datalist id="ingredients">
+                {value.state.ingredients.map(el => (
+                  <option value={el} />
+                ))}
+              </datalist>
                  {this.state.ingredientButton ? 
                 <Button
                   className="inputButton"

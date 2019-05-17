@@ -11,7 +11,9 @@ class Provider extends Component {
     cocktails: [],
     cocktailsLoaded: false,
     cocktail: null,
-    cocktailLoaded: false
+    cocktailLoaded: false,
+    namesList: [],
+    namesListLoaded: false
   };
 
   getCategories = () => {
@@ -23,10 +25,14 @@ class Provider extends Component {
       .then(result => {
         this.setState({
           categoriesLoaded: true,
-          categories: result.drinks.map(e => e.strCategory),
+          categories: result.drinks.map(e => e.strCategory)
         });
-      })
-       .catch(error => {
+      }).then( () => {
+        this.state.categories.forEach(el => this.getNamesbyCategories(el))
+        console.log(this.state.namesList)
+      }
+      )
+      .catch(error => {
         this.setState({
           error
         });
@@ -39,7 +45,6 @@ class Provider extends Component {
     })
       .then(res => res.json())
       .then(result => {
-        
         this.setState({
           categoriesIngredients: true,
           ingredients: result.drinks.map(e => e.strIngredient1)
@@ -51,11 +56,11 @@ class Provider extends Component {
         });
       });
   };
-  getCocktails = (func,field, name) => {
+  getCocktails = (func, field, name) => {
     this.setState({
       cocktailsLoaded: false
-    })
-    fetch(URL + func + ".php?"+field+"=" + name, {
+    });
+    fetch(URL + func + ".php?" + field + "=" + name, {
       method: "GET",
       headers: new Headers({})
     })
@@ -80,7 +85,6 @@ class Provider extends Component {
         });
       });
   };
-
   getCocktail = id => {
     this.setState({
       cocktailLoaded: false
@@ -111,11 +115,35 @@ class Provider extends Component {
       });
   };
 
+  getNamesbyCategories = name => {
+    this.setState({
+      namesListLoaded: false
+    });
+    fetch(URL + "filter.php?c=" + name, {
+      method: "GET",
+      headers: new Headers({})
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log([...result.drinks.map(el => el.strDrink)])
+        this.setState({
+          namesListLoaded: true,
+          namesList:  this.state.namesList.concat([...result.drinks.map(el => el.strDrink)])
+        });
+      })
+      .catch(error => {
+        this.setState({
+          error
+        });
+      });
+  };
+
   componentDidMount() {
     this.getCategories();
     this.getIngredients();
     // this.getCocktails ("s","margarita");
     this.getCocktail("17216");
+
   }
 
   render() {
