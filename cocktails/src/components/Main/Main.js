@@ -13,13 +13,15 @@ export class Main extends Component {
     this.setState({ showList: !this.state.showList });
   };
 
+  
+
   render() {
     return (
       <div className="mainContainer">
         {this.state.showList ? (
           <Cocktails toggleList={this.toggleList} />
         ) : (
-          <CardFigure />
+          <CardFigure backToList={this.toggleList}/>
         )}
       </div>
     );
