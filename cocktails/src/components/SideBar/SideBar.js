@@ -13,13 +13,26 @@ import { Consumer } from "../../Provider/Provider";
 class SideBar extends Component {
   state = {
     nameValue: "",
-    ingredientValue: ""
+    ingredientValue: "",
+    ingredientButton: false,
+    nameButton: false
   };
   handleValueChange = (category, event) => {
     this.setState({
       [category]: event.target.value
     });
   };
+  showButton = (button) => {
+    this.setState({
+        [button] : true
+    })
+  };
+  hideButton = (button) => {
+    this.setState({
+        [button] : false
+    })
+  };
+  
   handleSubmit = (category, event) => {};
   render() {
     return (
@@ -67,18 +80,20 @@ class SideBar extends Component {
                   aria-describedby="basic-addon1"
                   value={this.state.value}
                   onChange={event => this.handleValueChange("nameValue", event)}
+                  onFocus={()=>this.showButton("nameButton")}
+                  onBlur={()=>this.hideButton("nameButton")}
                 />
+                {this.state.nameButton ? 
                 <Button
                   variant="primary"
                   type="submit"
                   onClick={event => {
                     event.preventDefault();
-                    console.log(this.state.nameValue);
                     value.getCocktails("search", "s", this.state.nameValue);
                   }}
                 >
                   Buscar por nombre
-                </Button>
+                </Button>: "" }
               </Form>
               <br />
 
@@ -95,18 +110,20 @@ class SideBar extends Component {
                   onChange={event =>
                     this.handleValueChange("ingredientValue", event)
                   }
+                  onFocus={()=>this.showButton("ingredientButton")}
+                  onBlur={()=>this.hideButton("ingredientButton")}
                 />
+                 {this.state.ingredientButton ? 
                 <Button
                   variant="primary"
                   type="submit"
                   onClick={event => {
                     event.preventDefault();
-                    console.log(this.state.ingredientValue);
-                    value.getCocktails("search", "i", this.state.ingredientValue);
+                    value.getCocktails("filter", "i", this.state.ingredientValue);
                   }}
                 >
                   Buscar por ingrediente
-                </Button>
+                </Button> : ""}
               </Form>
             </div>
           );
